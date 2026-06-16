@@ -1,0 +1,58 @@
+{
+  "project": {
+    "name": "Customer Support Intent Detection",
+    "description": "Jinja templates for dynamic intent detection prompts in customer support.",
+    "default_language": "English"
+  },
+  "tasks": [
+    {
+      "name": "intent_classification",
+      "mode": "document",
+      "labels": [
+        "bug_report",
+        "technical_question",
+        "feature_request",
+        "billing",
+        "feedback"
+      ],
+      "allow_mixed": false,
+      "include_few_shot": true,
+      "include_reasoning_field": true,
+      "json_only": true,
+      "max_examples": 3
+    },
+    {
+      "name": "intent_with_urgency",
+      "mode": "document",
+      "labels": [
+        "bug_report",
+        "technical_question",
+        "feature_request",
+        "billing",
+        "feedback"
+      ],
+      "allow_mixed": false,
+      "include_few_shot": true,
+      "include_reasoning_field": true,
+      "json_only": true,
+      "max_examples": 5
+    },
+    {
+      "name": "category_based",
+      "mode": "category",
+      "labels": [
+        "bug_report",
+        "technical_question",
+        "feature_request",
+        "billing",
+        "feedback",
+        "not_applicable"
+      ],
+      "allow_mixed": false,
+      "include_few_shot": false,
+      "include_reasoning_field": false,
+      "json_only": true,
+      "max_examples": 0
+    }
+  ]
+}

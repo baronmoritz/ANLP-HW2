@@ -1,0 +1,27 @@
+[
+  {
+    "text": "The app crashes when I try to export data.",
+    "intent": "bug_report",
+    "reason": "User reports a malfunction."
+  },
+  {
+    "text": "How do I reset my password?",
+    "intent": "technical_question",
+    "reason": "User asks for help with a feature."
+  },
+  {
+    "text": "I need to add more users to my account.",
+    "intent": "feature_request",
+    "reason": "User wants additional functionality."
+  },
+  {
+    "text": "Great, another bug in your update.",
+    "intent": "bug_report",
+    "reason": "Sarcastic remark about a problem."
+  },
+  {
+    "text": "Why am I being charged for unused features?",
+    "intent": "billing",
+    "reason": "User questions charges."
+  }
+]

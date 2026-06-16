@@ -1,0 +1,93 @@
+[
+  {
+    "id": "req001",
+    "customer_name": "Max Mustermann",
+    "text": "The application crashes every time I try to export CSV files larger than 10MB. I've attached the error log.",
+    "product_type": "data_analytics_tool",
+    "categories": [
+      "export",
+      "crash",
+      "performance"
+    ],
+    "urgency_level": "high",
+    "contains_sarcasm": false,
+    "language": "en",
+    "expected_intent": "bug_report",
+    "has_attachments": true,
+    "os": "Windows 11",
+    "additional_info": "This started after the last update."
+  },
+  {
+    "id": "req002",
+    "customer_name": "Rainer Zufall",
+    "text": "Oh fantastic, the 'Improve User Experience' update broke the entire user experience. Now nothing works.",
+    "product_type": "mobile_app",
+    "categories": [
+      "ui",
+      "update",
+      "bug"
+    ],
+    "urgency_level": "critical",
+    "contains_sarcasm": true,
+    "language": "en",
+    "expected_intent": "bug_report",
+    "has_attachments": false,
+    "os": "iOS 17",
+    "additional_info": null
+  },
+  {
+    "id": "req003",
+    "customer_name": "Ernst Haft",
+    "text": "I need help with API authentication and also with setting up webhook notifications for our enterprise plan.",
+    "product_type": "api_service",
+    "categories": [
+      "api",
+      "authentication",
+      "webhooks",
+      "enterprise"
+    ],
+    "urgency_level": "medium",
+    "contains_sarcasm": false,
+    "language": "en",
+    "expected_intent": "technical_support",
+    "has_attachments": false,
+    "os": null,
+    "additional_info": "We have a team of 5 developers waiting on this."
+  },
+  {
+    "id": "req004",
+    "customer_name": "Anna Nass",
+    "text": "The database connection times out after exactly 30 minutes of inactivity. Is there a configurable timeout setting?",
+    "product_type": "backend_service",
+    "categories": [
+      "database",
+      "timeout",
+      "configuration"
+    ],
+    "urgency_level": "medium",
+    "contains_sarcasm": false,
+    "language": "en",
+    "expected_intent": "technical_question",
+    "has_attachments": false,
+    "os": "Linux (Ubuntu 22.04)",
+    "additional_info": null
+  },
+  {
+    "id": "req005",
+    "customer_name": "Marga Milch",
+    "text": "Your documentation says the feature is available, but I can't find it anywhere in the dashboard. Great job on the hide and seek implementation.",
+    "product_type": "saas_platform",
+    "categories": [
+      "documentation",
+      "ui",
+      "feature_access"
+    ],
+    "urgency_level": "low",
+    "contains_sarcasm": true,
+    "language": "en",
+    "expected_intent": "feature_request",
+    "has_attachments": false,
+    "os": null,
+    "additional_info": null
+  }
+]

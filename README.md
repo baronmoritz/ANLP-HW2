@@ -1,4 +1,4 @@
-# Advanced Natural Language Processing Course - Homework 2 Part 5
+# Advanced Natural Language Processing Course<br>Homework 2 Part 5
 
 ## Task
 
@@ -8,4 +8,6 @@ Possible domains include: Movie review analysis, Scientific abstract summarizati
 ## Domain
 
 The chosen domain is technical customer support intent detection.
+
+
 

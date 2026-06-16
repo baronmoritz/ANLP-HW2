@@ -46,16 +46,3 @@ This variant classifies the urgency level of support requests instead of their i
 - Few-shot examples: no- JSON-only response: yes
 This variant changes the output schema from one document-level label to a list of category-level intents.
 
-
-## Why Jinja Is Useful Here
-
-The templates handle:
-
-- conditional task modes (document vs category vs urgency classification),
-- optional few-shot examples,
-- different label spaces (intents vs urgency levels),
-- sarcasm warnings,
-- attachment notes,
-- document-level versus category-level JSON schemas,
-- batch versus single-request prompts,
-- completely different classification tasks (intent vs urgency) from the same template structure.

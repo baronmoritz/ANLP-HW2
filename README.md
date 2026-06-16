@@ -66,3 +66,14 @@ This makes the project easier to maintain as tasks evolve from simple classifica
 
 ### 5. **Maintainability**
 Adding a new task variant only requires updating `task_configs.json` — no template or Python code changes needed. Editing prompts means modifying template files, not embedded strings.
+
+## Project Content
+
+- `jinja_customer_support_intent_detection.ipynb`: Main notebook
+- `data/`: Contains the support_request dataset, the few shot examples and the task configurations.
+- `templates/`: Contains the Jinja template files.
+- `outputs/`: Contains the generated promts as text files in one subdirectory per task
+
+## Usage
+
+Run the Jupyter notebook by creating a virtual environment and installing the requirements defined in the `requirements.txt`.

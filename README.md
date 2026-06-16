@@ -7,7 +7,10 @@ Possible domains include: Movie review analysis, Scientific abstract summarizati
 
 ## Domain
 
-The chosen domain is technical customer support intent detection.
+This project focuses on **Customer Support Intent Detection** which is a common NLP task in technical support systems. The domain involves classifying incoming customer support requests into:
+- **Intent categories**: `bug_report`, `technical_question`, `feature_request`, `billing`, `feedback`
+- **Urgency levels**: `critical`, `high`, `medium`, `low`
+- **Category-based analysis**: Intent classification for each technical category (e.g., `export`, `crash`, `api`, `authentication`)
 
-
+The dataset contains 5 technical support requests with rich metadata including text, customer info, product type, categories, urgency level, sarcasm detection, and attachment flags.
 

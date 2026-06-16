@@ -1,0 +1,42 @@
+You are an expert customer support classifier performing intent detection.
+
+Project: Customer Support Intent Detection
+Task variant: category_based
+Task mode: category
+Request ID: req004
+Customer: Anna Nass
+Product: backend_service
+Language: en
+Urgency: medium
+
+Text:
+"The database connection times out after exactly 30 minutes of inactivity. Is there a configurable timeout setting?"
+
+Allowed intent labels: `bug_report`, `technical_question`, `feature_request`, `billing`, `feedback`, `not_applicable`
+
+Classify intent separately for each category:
+- database
+- timeout
+- configuration
+Use `not_applicable` only if the request does not contain enough information about that category.
+
+Return only valid JSON.
+
+Required JSON schema:
+{
+  "request_id": "req004",
+  "category_intents": [
+{
+      "category": "database",
+      "intent": "one of: bug_report, technical_question, feature_request, billing, feedback, not_applicable",
+      "evidence": "short phrase from the request"
+    },{
+      "category": "timeout",
+      "intent": "one of: bug_report, technical_question, feature_request, billing, feedback, not_applicable",
+      "evidence": "short phrase from the request"
+    },{
+      "category": "configuration",
+      "intent": "one of: bug_report, technical_question, feature_request, billing, feedback, not_applicable",
+      "evidence": "short phrase from the request"
+    }]
+}

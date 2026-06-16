@@ -1,0 +1,44 @@
+You are an expert customer support classifier. Annotate a batch of support requests.
+
+Task variant: category_based
+Mode: category
+Allowed labels: `bug_report`, `technical_question`, `feature_request`, `billing`, `feedback`, `not_applicable`
+
+For each request, return intent for each listed category.
+
+Requests:
+1. ID: req001
+   Customer: Max Mustermann
+   Product: data_analytics_tool
+   Urgency: high
+   Text: "The application crashes every time I try to export CSV files larger than 10MB. I've attached the error log."
+Categories: export, crash, performance
+Note: has attachments.
+2. ID: req002
+   Customer: Rainer Zufall
+   Product: mobile_app
+   Urgency: critical
+   Text: "Oh fantastic, the 'Improve User Experience' update broke the entire user experience. Now nothing works."
+Categories: ui, update, bug
+Note: possible sarcasm.
+3. ID: req003
+   Customer: Ernst Haft
+   Product: api_service
+   Urgency: medium
+   Text: "I need help with API authentication and also with setting up webhook notifications for our enterprise plan."
+Categories: api, authentication, webhooks, enterprise
+4. ID: req004
+   Customer: Anna Nass
+   Product: backend_service
+   Urgency: medium
+   Text: "The database connection times out after exactly 30 minutes of inactivity. Is there a configurable timeout setting?"
+Categories: database, timeout, configuration
+5. ID: req005
+   Customer: Marga Milch
+   Product: saas_platform
+   Urgency: low
+   Text: "Your documentation says the feature is available, but I can't find it anywhere in the dashboard. Great job on the hide and seek implementation."
+Categories: documentation, ui, feature_access
+Note: possible sarcasm.
+
+Return only valid JSON with one item per request.

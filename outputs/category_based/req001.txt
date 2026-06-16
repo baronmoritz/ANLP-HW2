@@ -1,0 +1,43 @@
+You are an expert customer support classifier performing intent detection.
+
+Project: Customer Support Intent Detection
+Task variant: category_based
+Task mode: category
+Request ID: req001
+Customer: Max Mustermann
+Product: data_analytics_tool
+Language: en
+Urgency: high
+
+Text:
+"The application crashes every time I try to export CSV files larger than 10MB. I've attached the error log."
+
+Allowed intent labels: `bug_report`, `technical_question`, `feature_request`, `billing`, `feedback`, `not_applicable`
+
+Classify intent separately for each category:
+- export
+- crash
+- performance
+Use `not_applicable` only if the request does not contain enough information about that category.
+
+Note: The customer has attached error logs or additional files.
+Return only valid JSON.
+
+Required JSON schema:
+{
+  "request_id": "req001",
+  "category_intents": [
+{
+      "category": "export",
+      "intent": "one of: bug_report, technical_question, feature_request, billing, feedback, not_applicable",
+      "evidence": "short phrase from the request"
+    },{
+      "category": "crash",
+      "intent": "one of: bug_report, technical_question, feature_request, billing, feedback, not_applicable",
+      "evidence": "short phrase from the request"
+    },{
+      "category": "performance",
+      "intent": "one of: bug_report, technical_question, feature_request, billing, feedback, not_applicable",
+      "evidence": "short phrase from the request"
+    }]
+}

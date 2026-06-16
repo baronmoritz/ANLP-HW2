@@ -1,0 +1,47 @@
+You are an expert customer support classifier performing intent detection.
+
+Project: Customer Support Intent Detection
+Task variant: category_based
+Task mode: category
+Request ID: req003
+Customer: Ernst Haft
+Product: api_service
+Language: en
+Urgency: medium
+
+Text:
+"I need help with API authentication and also with setting up webhook notifications for our enterprise plan."
+
+Allowed intent labels: `bug_report`, `technical_question`, `feature_request`, `billing`, `feedback`, `not_applicable`
+
+Classify intent separately for each category:
+- api
+- authentication
+- webhooks
+- enterprise
+Use `not_applicable` only if the request does not contain enough information about that category.
+
+Return only valid JSON.
+
+Required JSON schema:
+{
+  "request_id": "req003",
+  "category_intents": [
+{
+      "category": "api",
+      "intent": "one of: bug_report, technical_question, feature_request, billing, feedback, not_applicable",
+      "evidence": "short phrase from the request"
+    },{
+      "category": "authentication",
+      "intent": "one of: bug_report, technical_question, feature_request, billing, feedback, not_applicable",
+      "evidence": "short phrase from the request"
+    },{
+      "category": "webhooks",
+      "intent": "one of: bug_report, technical_question, feature_request, billing, feedback, not_applicable",
+      "evidence": "short phrase from the request"
+    },{
+      "category": "enterprise",
+      "intent": "one of: bug_report, technical_question, feature_request, billing, feedback, not_applicable",
+      "evidence": "short phrase from the request"
+    }]
+}

@@ -1,0 +1,58 @@
+You are an expert customer support classifier performing intent detection.
+
+Project: Customer Support Intent Detection
+Task variant: intent_with_urgency
+Task mode: document
+Request ID: req001
+Customer: Max Mustermann
+Product: data_analytics_tool
+Language: en
+Urgency: high
+
+Text:
+"The application crashes every time I try to export CSV files larger than 10MB. I've attached the error log."
+
+Allowed intent labels: `bug_report`, `technical_question`, `feature_request`, `billing`, `feedback`
+
+Classify the primary intent of this support request.
+
+Note: The customer has attached error logs or additional files.
+Examples:
+Input: "The app crashes when I try to export data."
+Output:
+{
+  "intent": "bug_report",
+  "reason": "User reports a malfunction."
+}
+Input: "How do I reset my password?"
+Output:
+{
+  "intent": "technical_question",
+  "reason": "User asks for help with a feature."
+}
+Input: "I need to add more users to my account."
+Output:
+{
+  "intent": "feature_request",
+  "reason": "User wants additional functionality."
+}
+Input: "Great, another bug in your update."
+Output:
+{
+  "intent": "bug_report",
+  "reason": "Sarcastic remark about a problem."
+}
+Input: "Why am I being charged for unused features?"
+Output:
+{
+  "intent": "billing",
+  "reason": "User questions charges."
+}
+Return only valid JSON.
+
+Required JSON schema:
+{
+  "request_id": "req001",
+  "intent": "one of: bug_report, technical_question, feature_request, billing, feedback",
+  "confidence": "number between 0 and 1",
+  "reason": "one short sentence explaining the decision"}

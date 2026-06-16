@@ -1,0 +1,32 @@
+{% import "macros.j2" as macros -%}
+You are an expert customer support classifier. Annotate a batch of support requests.
+
+Task variant: {{ task.name }}
+Mode: {{ task.mode }}
+Allowed labels: {{ macros.comma_list(task.labels) }}
+
+{% if task.mode == "document" -%}
+For each request, return one primary intent label.
+{% elif task.mode == "category" -%}
+For each request, return intent for each listed category.
+{% endif %}
+
+Requests:
+{% for request in requests %}
+{{ loop.index }}. ID: {{ request.id }}
+   Customer: {{ request.customer_name }}
+   Product: {{ request.product_type }}
+   Urgency: {{ request.urgency_level }}
+   Text: "{{ request.text }}"
+   {% if task.mode == "category" -%}
+   Categories: {{ request.categories | join(", ") }}
+   {% endif -%}
+   {% if request.contains_sarcasm -%}
+   Note: possible sarcasm.
+   {% endif %}
+   {% if request.has_attachments -%}
+   Note: has attachments.
+   {% endif %}
+{% endfor %}
+
+Return only valid JSON with one item per request.

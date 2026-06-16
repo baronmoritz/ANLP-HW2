@@ -1,0 +1,51 @@
+# {{ project.name }}
+
+{{ project.description }}
+
+## Dataset Summary
+
+Total support requests: {{ requests | length }}
+
+{% set sarcastic = requests | selectattr("contains_sarcasm") | list -%}
+Requests with possible sarcasm: {{ sarcastic | length }}
+
+{% set with_attachments = requests | selectattr("has_attachments") | list -%}
+Requests with attachments: {{ with_attachments | length }}
+
+Intent distribution:
+{% for request in requests %}
+- {{ request.id }}: {{ request.expected_intent }}
+{% endfor %}
+
+## Prompt Variants
+
+{% for task in tasks %}
+### {{ loop.index }}. {{ task.name }}
+
+- Mode: `{{ task.mode }}`
+- Labels: {{ task.labels | join(", ") }}
+- Few-shot examples: {% if task.include_few_shot %}yes, up to {{ task.max_examples }}{% else %}no{% endif %}
+- JSON-only response: {% if task.json_only %}yes{% else %}no{% endif %}
+
+{% if task.mode == "category" %}
+This variant changes the output schema from one document-level label to a list of category-level intents.
+{% elif task.allow_mixed %}
+This variant allows mixed intents.
+{% else %}
+This variant forces a single intent classification.
+{% endif %}
+
+{% endfor %}
+
+## Why Jinja Is Useful Here
+
+The templates handle:
+
+- conditional task modes (document vs category),
+- optional few-shot examples,
+- different label spaces,
+- sarcasm warnings,
+- attachment notes,
+- urgency levels,
+- document-level versus category-level JSON schemas,
+- batch versus single-request prompts.

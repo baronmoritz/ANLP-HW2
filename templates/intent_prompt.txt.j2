@@ -1,0 +1,72 @@
+{% import "macros.j2" as macros -%}
+You are an expert customer support classifier performing intent detection.
+
+Project: {{ project.name }}
+Task variant: {{ task.name }}
+Task mode: {{ task.mode }}
+Request ID: {{ request.id }}
+Customer: {{ request.customer_name }}
+Product: {{ request.product_type }}
+Language: {{ request.language }}
+Urgency: {{ request.urgency_level }}
+
+Text:
+"{{ request.text }}"
+
+Allowed intent labels: {{ macros.comma_list(task.labels) }}
+
+{% if task.mode == "document" -%}
+Classify the primary intent of this support request.
+{% elif task.mode == "category" -%}
+Classify intent separately for each category:
+{% for category in request.categories -%}
+- {{ category }}
+{% endfor -%}
+Use `not_applicable` only if the request does not contain enough information about that category.
+{% endif %}
+
+{% if request.contains_sarcasm -%}
+Important: this request may contain sarcasm. Interpret the intended intent, not only the literal wording.
+{% endif -%}
+
+{% if request.has_attachments -%}
+Note: The customer has attached error logs or additional files.
+{% endif -%}
+
+{% if task.include_few_shot -%}
+Examples:
+{% for example in examples[:task.max_examples] %}
+Input: "{{ example.text }}"
+Output:
+{
+  "intent": "{{ example.intent }}",
+  "reason": "{{ example.reason }}"
+}
+{% endfor %}
+{% endif -%}
+
+Return {% if task.json_only %}only valid JSON{% else %}a concise structured answer{% endif %}.
+
+{% if task.mode == "document" -%}
+Required JSON schema:
+{
+  "request_id": "{{ request.id }}",
+  "intent": "one of: {{ task.labels | join(', ') }}",
+  "confidence": "number between 0 and 1"{% if task.include_reasoning_field %},
+  "reason": "one short sentence explaining the decision"{% endif %}
+}
+{% elif task.mode == "category" -%}
+Required JSON schema:
+{
+  "request_id": "{{ request.id }}",
+  "category_intents": [
+    {% for category in request.categories -%}
+    {
+      "category": "{{ category }}",
+      "intent": "one of: {{ task.labels | join(', ') }}",
+      "evidence": "short phrase from the request"
+    }{% if not loop.last %},{% endif %}
+    {% endfor -%}
+  ]
+}
+{% endif -%}

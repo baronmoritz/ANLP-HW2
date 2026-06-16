@@ -1,0 +1,9 @@
+{% macro comma_list(items) -%}
+{%- for item in items -%}
+`{{ item }}`{% if not loop.last %}, {% endif %}
+{%- endfor -%}
+{%- endmacro %}
+
+{% macro json_string_array(items) -%}
+[{{ items | map('tojson') | join(', ') }}]
+{%- endmacro %}

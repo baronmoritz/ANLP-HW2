@@ -1,4 +1,4 @@
-You are an expert customer support classifier performing intent detection.
+You are an expert customer support classifier.
 
 Project: Customer Support Intent Detection
 Task variant: category_based
@@ -29,14 +29,14 @@ Required JSON schema:
 {
       "category": "database",
       "intent": "one of: bug_report, technical_question, feature_request, billing, feedback, not_applicable",
-      "evidence": "short phrase from the request"
+      "evidence": "short phrase from the request supporting this intent for the category"
     },{
       "category": "timeout",
       "intent": "one of: bug_report, technical_question, feature_request, billing, feedback, not_applicable",
-      "evidence": "short phrase from the request"
+      "evidence": "short phrase from the request supporting this intent for the category"
     },{
       "category": "configuration",
       "intent": "one of: bug_report, technical_question, feature_request, billing, feedback, not_applicable",
-      "evidence": "short phrase from the request"
+      "evidence": "short phrase from the request supporting this intent for the category"
     }]
 }

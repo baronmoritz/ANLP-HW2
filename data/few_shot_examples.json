@@ -2,26 +2,49 @@
   {
     "text": "The app crashes when I try to export data.",
     "intent": "bug_report",
-    "reason": "User reports a malfunction."
+    "urgency": "high",
+    "reason": "User reports a malfunction blocking workflow."
   },
   {
     "text": "How do I reset my password?",
     "intent": "technical_question",
+    "urgency": "medium",
     "reason": "User asks for help with a feature."
   },
   {
     "text": "I need to add more users to my account.",
     "intent": "feature_request",
+    "urgency": "low",
     "reason": "User wants additional functionality."
   },
   {
     "text": "Great, another bug in your update.",
     "intent": "bug_report",
-    "reason": "Sarcastic remark about a problem."
+    "urgency": "critical",
+    "reason": "Sarcastic remark about a problem preventing work."
   },
   {
     "text": "Why am I being charged for unused features?",
     "intent": "billing",
+    "urgency": "medium",
     "reason": "User questions charges."
+  },
+  {
+    "text": "The entire system is down and we cannot process any orders!",
+    "urgency": "critical",
+    "intent": "bug_report",
+    "reason": "System outage affects core business operations."
+  },
+  {
+    "text": "I get an error when trying to save large files.",
+    "urgency": "high",
+    "intent": "bug_report",
+    "reason": "Error blocks important functionality."
+  },
+  {
+    "text": "Where can I find the API documentation?",
+    "urgency": "low",
+    "intent": "technical_question",
+    "reason": "General information request with no time pressure."
   }
 ]

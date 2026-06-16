@@ -1,4 +1,4 @@
-You are an expert customer support classifier performing intent detection.
+You are an expert customer support classifier.
 
 Project: Customer Support Intent Detection
 Task variant: intent_classification
@@ -7,7 +7,7 @@ Request ID: req003
 Customer: Ernst Haft
 Product: api_service
 Language: en
-Urgency: medium
+Urgency: high
 
 Text:
 "I need help with API authentication and also with setting up webhook notifications for our enterprise plan."
@@ -20,19 +20,19 @@ Examples:
 Input: "The app crashes when I try to export data."
 Output:
 {
-  "intent": "bug_report",
-  "reason": "User reports a malfunction."
+"intent": "bug_report",
+  "reason": "User reports a malfunction blocking workflow."
 }
 Input: "How do I reset my password?"
 Output:
 {
-  "intent": "technical_question",
+"intent": "technical_question",
   "reason": "User asks for help with a feature."
 }
 Input: "I need to add more users to my account."
 Output:
 {
-  "intent": "feature_request",
+"intent": "feature_request",
   "reason": "User wants additional functionality."
 }
 Return only valid JSON.

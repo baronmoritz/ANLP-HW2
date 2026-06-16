@@ -12,6 +12,19 @@ Requests with possible sarcasm: {{ sarcastic | length }}
 {% set with_attachments = requests | selectattr("has_attachments") | list -%}
 Requests with attachments: {{ with_attachments | length }}
 
+Urgency distribution:
+{% set urgency_counts = {} -%}
+{% for request in requests -%}
+{% if request.urgency_level in urgency_counts -%}
+{% set urgency_counts = urgency_counts.update({request.urgency_level: urgency_counts[request.urgency_level] + 1}) -%}
+{% else -%}
+{% set urgency_counts = urgency_counts.update({request.urgency_level: 1}) -%}
+{% endif -%}
+{% endfor -%}
+{% for level, count in urgency_counts.items() -%}
+- {{ level }}: {{ count }}
+{% endfor %}
+
 Intent distribution:
 {% for request in requests %}
 - {{ request.id }}: {{ request.expected_intent }}
@@ -27,12 +40,12 @@ Intent distribution:
 - Few-shot examples: {% if task.include_few_shot %}yes, up to {{ task.max_examples }}{% else %}no{% endif %}
 - JSON-only response: {% if task.json_only %}yes{% else %}no{% endif %}
 
-{% if task.mode == "category" %}
+{% if task.name == "urgency_classification" %}
+This variant classifies the urgency level of support requests instead of their intent, demonstrating how the same template structure can handle completely different classification tasks.
+{% elif task.mode == "category" %}
 This variant changes the output schema from one document-level label to a list of category-level intents.
-{% elif task.allow_mixed %}
-This variant allows mixed intents.
 {% else %}
-This variant forces a single intent classification.
+This variant performs standard intent classification.
 {% endif %}
 
 {% endfor %}
@@ -41,11 +54,11 @@ This variant forces a single intent classification.
 
 The templates handle:
 
-- conditional task modes (document vs category),
+- conditional task modes (document vs category vs urgency classification),
 - optional few-shot examples,
-- different label spaces,
+- different label spaces (intents vs urgency levels),
 - sarcasm warnings,
 - attachment notes,
-- urgency levels,
 - document-level versus category-level JSON schemas,
-- batch versus single-request prompts.
+- batch versus single-request prompts,
+- completely different classification tasks (intent vs urgency) from the same template structure.

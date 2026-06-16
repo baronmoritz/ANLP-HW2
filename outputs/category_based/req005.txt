@@ -1,4 +1,4 @@
-You are an expert customer support classifier performing intent detection.
+You are an expert customer support classifier.
 
 Project: Customer Support Intent Detection
 Task variant: category_based
@@ -20,7 +20,7 @@ Classify intent separately for each category:
 - feature_access
 Use `not_applicable` only if the request does not contain enough information about that category.
 
-Important: this request may contain sarcasm. Interpret the intended intent, not only the literal wording.
+Important: this request may contain sarcasm. Interpret the intended meaning, not only the literal wording.
 Return only valid JSON.
 
 Required JSON schema:
@@ -30,14 +30,14 @@ Required JSON schema:
 {
       "category": "documentation",
       "intent": "one of: bug_report, technical_question, feature_request, billing, feedback, not_applicable",
-      "evidence": "short phrase from the request"
+      "evidence": "short phrase from the request supporting this intent for the category"
     },{
       "category": "ui",
       "intent": "one of: bug_report, technical_question, feature_request, billing, feedback, not_applicable",
-      "evidence": "short phrase from the request"
+      "evidence": "short phrase from the request supporting this intent for the category"
     },{
       "category": "feature_access",
       "intent": "one of: bug_report, technical_question, feature_request, billing, feedback, not_applicable",
-      "evidence": "short phrase from the request"
+      "evidence": "short phrase from the request supporting this intent for the category"
     }]
 }

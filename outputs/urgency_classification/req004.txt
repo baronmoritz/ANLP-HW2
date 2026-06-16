@@ -1,38 +1,38 @@
 You are an expert customer support classifier.
 
 Project: Customer Support Intent Detection
-Task variant: intent_classification
+Task variant: urgency_classification
 Task mode: document
 Request ID: req004
 Customer: Anna Nass
 Product: backend_service
 Language: en
-Urgency: medium
 
 Text:
 "The database connection times out after exactly 30 minutes of inactivity. Is there a configurable timeout setting?"
 
-Allowed intent labels: `bug_report`, `technical_question`, `feature_request`, `billing`, `feedback`
+Allowed urgency labels: `critical`, `high`, `medium`, `low`
 
-Classify the primary intent of this support request.
+Classify the urgency level of this support request based solely on the text content and context. Do NOT use any metadata that might be available in the system.
+
 
 Examples:
 Input: "The app crashes when I try to export data."
 Output:
 {
-"intent": "bug_report",
+"urgency": "high",
   "reason": "User reports a malfunction blocking workflow."
 }
 Input: "How do I reset my password?"
 Output:
 {
-"intent": "technical_question",
+"urgency": "medium",
   "reason": "User asks for help with a feature."
 }
 Input: "I need to add more users to my account."
 Output:
 {
-"intent": "feature_request",
+"urgency": "low",
   "reason": "User wants additional functionality."
 }
 Return only valid JSON.
@@ -40,6 +40,6 @@ Return only valid JSON.
 Required JSON schema:
 {
   "request_id": "req004",
-  "intent": "one of: bug_report, technical_question, feature_request, billing, feedback",
+  "urgency": "one of: critical, high, medium, low",
   "confidence": "number between 0 and 1",
   "reason": "one short sentence explaining the decision"}

@@ -46,7 +46,7 @@
       "webhooks",
       "enterprise"
     ],
-    "urgency_level": "medium",
+    "urgency_level": "high",
     "contains_sarcasm": false,
     "language": "en",
     "expected_intent": "technical_support",

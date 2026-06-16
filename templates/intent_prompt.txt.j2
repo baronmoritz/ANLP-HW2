@@ -1,5 +1,5 @@
 {% import "macros.j2" as macros -%}
-You are an expert customer support classifier performing intent detection.
+You are an expert customer support classifier.
 
 Project: {{ project.name }}
 Task variant: {{ task.name }}
@@ -8,16 +8,25 @@ Request ID: {{ request.id }}
 Customer: {{ request.customer_name }}
 Product: {{ request.product_type }}
 Language: {{ request.language }}
+{% if task.name != "urgency_classification" %}
 Urgency: {{ request.urgency_level }}
+{% endif %}
 
 Text:
 "{{ request.text }}"
 
+{% if task.name == "urgency_classification" -%}
+Allowed urgency labels: {{ macros.comma_list(task.labels) }}
+
+Classify the urgency level of this support request based solely on the text content and context. Do NOT use any metadata that might be available in the system.
+
+{% elif task.mode == "document" -%}
 Allowed intent labels: {{ macros.comma_list(task.labels) }}
 
-{% if task.mode == "document" -%}
 Classify the primary intent of this support request.
 {% elif task.mode == "category" -%}
+Allowed intent labels: {{ macros.comma_list(task.labels) }}
+
 Classify intent separately for each category:
 {% for category in request.categories -%}
 - {{ category }}
@@ -26,7 +35,7 @@ Use `not_applicable` only if the request does not contain enough information abo
 {% endif %}
 
 {% if request.contains_sarcasm -%}
-Important: this request may contain sarcasm. Interpret the intended intent, not only the literal wording.
+Important: this request may contain sarcasm. Interpret the intended meaning, not only the literal wording.
 {% endif -%}
 
 {% if request.has_attachments -%}
@@ -39,15 +48,28 @@ Examples:
 Input: "{{ example.text }}"
 Output:
 {
+  {% if task.name == "urgency_classification" -%}
+  "urgency": "{{ example.urgency }}",
+  "reason": "{{ example.reason }}"
+  {% else -%}
   "intent": "{{ example.intent }}",
   "reason": "{{ example.reason }}"
+  {% endif %}
 }
 {% endfor %}
 {% endif -%}
 
 Return {% if task.json_only %}only valid JSON{% else %}a concise structured answer{% endif %}.
 
-{% if task.mode == "document" -%}
+{% if task.name == "urgency_classification" -%}
+Required JSON schema:
+{
+  "request_id": "{{ request.id }}",
+  "urgency": "one of: {{ task.labels | join(', ') }}",
+  "confidence": "number between 0 and 1"{% if task.include_reasoning_field %},
+  "reason": "one short sentence explaining the decision"{% endif %}
+}
+{% elif task.mode == "document" -%}
 Required JSON schema:
 {
   "request_id": "{{ request.id }}",
@@ -64,7 +86,7 @@ Required JSON schema:
     {
       "category": "{{ category }}",
       "intent": "one of: {{ task.labels | join(', ') }}",
-      "evidence": "short phrase from the request"
+      "evidence": "short phrase from the request supporting this intent for the category"
     }{% if not loop.last %},{% endif %}
     {% endfor -%}
   ]
